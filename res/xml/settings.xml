@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android">
+ <PreferenceCategory android:title="Location Update Frequency" android:key="locupdate">
+      <ListPreference
+        android:title="Set Minimum Frequency"
+        android:summary="How often to update location"
+        android:key="mintimeinc"
+        android:defaultValue="2000"
+        android:entries="@array/minTimeIncs"
+        android:entryValues="@array/minTimeVals" />
+      <ListPreference
+        android:title="Set Minimum Distance"
+        android:summary="Minimum distance of movement necessary to update location"
+        android:key="mindistance"
+        android:defaultValue="2"
+        android:entries="@array/minDistance"
+        android:entryValues="@array/minDistanceVals"
+      />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Proximity Radius" android:key="locupdatefreq">
+      <ListPreference
+        android:title="Set Proximity Radius"
+        android:summary="Proximity radius necessary to trigger alert"
+        android:key="proxradius"
+        android:defaultValue="2"
+        android:entries="@array/proxRadius"
+        android:entryValues="@array/proxRadiusVals"
+      />
+    </PreferenceCategory>
+
+
+
+</PreferenceScreen>

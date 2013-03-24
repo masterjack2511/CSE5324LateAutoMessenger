@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+  <resources>
+    <string-array name="minTimeIncs">
+      
+      
+      
+      
+      <item name="10000">Every 10 seconds</item>
+      <item name="30000">Every 30 seconds</item>
+      <item name="60000">Every 1 minute</item>
+      <item name="300000">Every 5 minutes</item>
+      <item name="600000">Every 10 minutes</item>
+      <item name="1800000">Every 30 minutes</item>
+    
+
+</string-array>
+    <string-array name="minTimeVals">
+      
+      
+      
+      
+      <item name="10000">10000</item>
+      <item name="30000">30000</item>
+      <item name="60000">60000</item>
+      <item name="300000">300000</item>
+      <item name="600000">600000</item>
+      <item name="1800000">1800000</item>
+    </string-array>
+    <string-array name="minDistance">
+      <item name="10">10 meters</item>
+      <item name="25">25 meters</item>
+      <item name="50">50 meters</item>
+      <item name="100">100 meters</item>
+      <item name="250">250 meters</item>
+      <item name="500">500 meters</item>
+      <item name="1000">1000 meters</item>
+       <item name="2000">2000 meters</item>
+       <item name="5000">5000 meters</item>
+    </string-array>
+    <string-array name="minDistanceVals">
+     
+      <item name="10">10</item>
+      <item name="25">25</item>
+      <item name="50">50</item>
+      <item name="100">100</item>
+      <item name="250">250</item>
+      <item name="500">500</item>
+      <item name="1000">1000</item>
+       <item name="2000">2000</item>
+       <item name="5000">5000</item>
+    </string-array>
+    <string-array name="proxRadius">
+     
+      <item name="10">10 meters</item>
+      <item name="25">25 meters</item>
+      <item name="50">50 meters</item>
+      <item name="100">100 meters</item>
+      <item name="250">250 meters</item>
+      <item name="500">500 meters</item>
+      <item name="1000">1000 meters</item>
+       <item name="2000">2000 meters</item>
+       <item name="5000">5000 meters</item>
+    </string-array>
+    <string-array name="proxRadiusVals">
+    
+      <item name="10">10</item>
+      <item name="25">25</item>
+      <item name="50">50</item>
+      <item name="100">100</item>
+      <item name="250">250</item>
+      <item name="500">500</item>
+      <item name="1000">1000</item>
+         <item name="2000">2000</item>
+       <item name="5000">5000</item>
+    </string-array>
+  </resources>

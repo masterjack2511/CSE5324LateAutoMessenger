@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+<ScrollView
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/scrollview">
+<LinearLayout 
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/innerlinear">
+<TextView  
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content"
+    android:text="Your current position is"
+    android:gravity="center_horizontal"
+    android:id="@+id/headerT"/>
+<TextView 
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Destination"
+    android:id="@+id/nameT"></TextView>
+<EditText
+    android:layout_height="wrap_content"
+    android:layout_width="fill_parent"
+    android:hint="Destination"
+    android:id="@+id/nameE"></EditText>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Message"
+    android:id="@+id/descT"></TextView>
+<EditText
+    android:layout_height="wrap_content"
+    android:layout_width="fill_parent"
+    android:hint="@string/default_message"
+    android:id="@+id/descrE"></EditText>
+<TextView
+    android:id="@+id/TextView03"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Event Date"></TextView>
+<DatePicker
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:id="@+id/expiryD"></DatePicker>
+<TimePicker 
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:id="@+id/time"/>
+<CheckBox
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Enabled"
+    android:id="@+id/enabledC"></CheckBox>
+<CheckBox
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/currentC"
+    android:text="Use current location"></CheckBox>
+
+<Button
+    android:id="@+id/addContactButton"
+    android:layout_width="match_parent"
+    android:layout_height="34dp"
+    android:text="Add Contact" 
+	android:onClick="addContactList"/>
+
+</LinearLayout>
+</ScrollView>
+</LinearLayout>
