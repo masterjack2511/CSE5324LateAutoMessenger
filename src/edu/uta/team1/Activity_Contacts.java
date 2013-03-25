@@ -1,3 +1,5 @@
+
+
 package edu.uta.team1;
 
 import java.util.ArrayList;
@@ -46,9 +48,11 @@ public class Activity_Contacts extends Activity {
         Intent contactPickerIntent = new Intent(Intent.ACTION_PICK, Contacts.CONTENT_URI);  
         
         startActivityForResult(contactPickerIntent, CONTACT_PICKER_RESULT);
-       // Log.v(DEBUG_TAG,"inside doLauchContactPicker\n");
     }  
     
+    
+    //This method was adapted from code from the following web site
+    //http://mobile.tutsplus.com/tutorials/android/android-essentials-using-the-contact-picker/
     @Override  
     protected void onActivityResult(int requestCode, int resultCode, Intent data) 
     {  
