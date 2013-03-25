@@ -18,7 +18,7 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 	
 public class Activity_Contacts extends Activity {
-	private String DEBUG_TAG;
+	private String DEBUG_TAG = "Activity_Contacts";
 	private static final int CONTACT_PICKER_RESULT = 1001;
 	private ArrayList<String> phone_No = new ArrayList<String>();
 	private String phoneNumber = "";
@@ -113,24 +113,44 @@ public class Activity_Contacts extends Activity {
     }  
     public void addMore(View v)
 	{
-    	if(phoneNumber != null) {
-	    	savePhoneNumber();
-	    	phoneEntry.setText("");
-	    	Log.v(DEBUG_TAG, "before loadList()"); 
-	    	loadList();
-	    	Log.v(DEBUG_TAG, "After loadList()"); 
-    	}
-		   
+    	savePhoneNumber();
+    	phoneEntry.setText("");
+    	loadList();
 	}
+    
     public void savePhoneNumber()
    	{
-    	phone_No.add(phoneNumber);
-       	
-   		   
+    	String numberEntry = phoneEntry.getText().toString(); 
+    	if(numberEntry.length() != 0){
+    		boolean found = false;
+    		for(String number : phone_No){
+    			if(number.equals(numberEntry)){
+    				found = true;
+    			}
+    		}
+    		if(!found) {
+    			phone_No.add(numberEntry);
+    		} else {
+    			Toast.makeText(getApplicationContext(), "Duplicate number", Toast.LENGTH_SHORT).show();
+    		}
+    	}
    	}
 	   
     private void loadList()
     {
     	numberListView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, phone_No));
+    }
+    
+    public void done(View view) {
+    	savePhoneNumber();
+    	
+    	if(phone_No.size() > 0){
+    		Intent returnIntent = new Intent();
+    	    returnIntent.putExtra("contacts", phone_No);
+    	    setResult(RESULT_OK, returnIntent);       
+    	} else {
+    		setResult(RESULT_CANCELED);
+    	}
+    	finish();
     }
 }

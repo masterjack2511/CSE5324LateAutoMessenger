@@ -20,7 +20,7 @@ public class ProximityAlert implements Parcelable {
 	  public int Year = -1;
 	  public int Hour = -1;
 	  public int Min = -1;
-	  public ArrayList<String> Items = new ArrayList<String>();
+	  //public ArrayList<String> Contacts = new ArrayList<String>();
 	  public boolean Enabled = false;
 	  public boolean IsNew = true;
 
@@ -35,6 +35,7 @@ public class ProximityAlert implements Parcelable {
 	    this.Year = year;
 	    this.Hour = hour;
 	    this.Min = min;
+	    //this.Contacts = contacts;
 	    this.Enabled = enabled;
 	  }
 
@@ -66,6 +67,7 @@ public class ProximityAlert implements Parcelable {
 		dest.writeInt(Year);
 		dest.writeInt(Hour);
 		dest.writeInt(Min);
+		//dest.writeStringList(Contacts);
 		if(this.Enabled)
 			dest.writeInt(1);
 		else
@@ -96,6 +98,7 @@ public class ProximityAlert implements Parcelable {
 		 this.Year = in.readInt();
 		 this.Hour = in.readInt();
 		 this.Min = in.readInt();
+		 //in.readStringList(this.Contacts);
 		 int enabled = in.readInt();
 		 if(enabled ==1)
 			 this.Enabled=true;

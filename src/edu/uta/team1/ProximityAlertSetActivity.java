@@ -1,5 +1,7 @@
 package edu.uta.team1;
 
+import java.util.ArrayList;
+
 import edu.uta.team1.R;
 
 import android.app.Activity;
@@ -29,19 +31,19 @@ import android.widget.Toast;
 public class ProximityAlertSetActivity extends Activity {
 	  private static final int DLG_CANCEL = 1;
 	  private static final int DLG_DELETE = 2;
+	  private static final int CONTACT_LIST_REQUEST = 1001;
 	  private double lat = 00;
 	  private double lng = 00;
 	  private boolean newReminder = true;
-
+	  private ArrayList<String> contactList;
 	  private ProximityAlert current;
 	  private CheckBox currentC;
-	  //final Button addContactButton;
+	  
 	  public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.alert_reminder);
-	    //addContactButton = (Button) findViewById(R.id.addContactButton);
 	    currentC = (CheckBox) findViewById(R.id.currentC);
-
+	    contactList = new ArrayList<String>();
 	    this.newReminder = !(getIntent().getExtras() != null && getIntent().getExtras().containsKey("current"));
 	    if (this.newReminder) {
 	    
@@ -61,6 +63,10 @@ public class ProximityAlertSetActivity extends Activity {
 	      picker.updateDate(current.Year, current.Month, current.DayOfMonth);
 	      timePicker.setCurrentHour(current.Hour);
 	      timePicker.setCurrentMinute(current.Min);
+	      /*for(String number : current.Contacts) {
+	        	contactList.add(number);
+	       }*/
+	      
 	      if(current.Enabled)
 	      {
 	    	  CheckBox enable = (CheckBox) findViewById(R.id.enabledC);
@@ -172,7 +178,7 @@ public class ProximityAlertSetActivity extends Activity {
 	    }
 	    else
 	    {
-	    	 ProximityAlert reminder = new ProximityAlert(current.Id,this.lat, this.lng, name, desc, picker.getMonth(), picker.getDayOfMonth(), picker.getYear(),timePicker.getCurrentHour(), timePicker.getCurrentMinute(),enabledC.isChecked());
+	    	 ProximityAlert reminder = new ProximityAlert(current.Id,this.lat, this.lng, name, desc, picker.getMonth(), picker.getDayOfMonth(), picker.getYear(),timePicker.getCurrentHour(), timePicker.getCurrentMinute(), enabledC.isChecked());
 		      ProximityAlertHelper.getInstance().addProximityAlerts(this, AlarmWrapper.edit(this, reminder));
 		 
 	    }
@@ -323,6 +329,16 @@ public class ProximityAlertSetActivity extends Activity {
 	  public void addContactList(View view)
 	  {
 		  Intent contactIntent = new Intent(this, Activity_Contacts.class);
-		  startActivityForResult(contactIntent, 0);
+		  contactIntent.putExtra("Contacts", contactList);
+		  startActivityForResult(contactIntent, CONTACT_LIST_REQUEST);
+	  }
+	  
+	  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		  if(requestCode == CONTACT_LIST_REQUEST){
+			  if(resultCode == RESULT_OK) {
+				  contactList = data.getStringArrayListExtra("contacts");
+				  Toast.makeText(getApplicationContext(), "Got the contacts", Toast.LENGTH_SHORT).show();
+			  }
+		  }
 	  }
 }

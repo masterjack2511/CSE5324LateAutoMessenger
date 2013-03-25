@@ -20,6 +20,7 @@ public class AlarmWrapper {
 		AlarmDbHelper.YEAR_CLM,
 		AlarmDbHelper.HOUR_CLM,
 		AlarmDbHelper.MIN_CLM,
+		//AlarmDbHelper.CON_CLM,
 		AlarmDbHelper.enabled_CLM
 		
 	};
@@ -45,6 +46,7 @@ public class AlarmWrapper {
 	    	int year_index = c.getColumnIndex(AlarmDbHelper.YEAR_CLM);
 	    	int hour_index = c.getColumnIndex(AlarmDbHelper.HOUR_CLM);
 	    	int min_index = c.getColumnIndex(AlarmDbHelper.MIN_CLM);
+	    	//int contacts_index = c.getColumnIndex(AlarmDbHelper.CON_CLM);
 	    	int enabled_index = c.getColumnIndex(AlarmDbHelper.enabled_CLM);
 	    	
 	    	do{
@@ -58,11 +60,12 @@ public class AlarmWrapper {
 	    		int year = c.getInt(year_index);
 	    		int hour = c.getInt(hour_index);
 	    		int min = c.getInt(min_index);
+	    		//byte[] = c.getBlob(contacts_index);
 	    		int enabled = c.getInt(enabled_index);
 	    		if(enabled ==1)
-	    			reminders.add(new  ProximityAlert(id, latt, longi, name, desc, month, day, year, hour, min, true));
+	    			reminders.add(new ProximityAlert(id, latt, longi, name, desc, month, day, year, hour, min, true));
 	    		else
-	    			reminders.add(new  ProximityAlert(id, latt, longi, name, desc, month, day, year, hour, min, false));
+	    			reminders.add(new ProximityAlert(id, latt, longi, name, desc, month, day, year, hour, min, false));
 	    	}
 	    	while (c.moveToNext());
 	    	
