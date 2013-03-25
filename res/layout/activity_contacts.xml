@@ -6,58 +6,69 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".Activity_Contacts" >
+    tools:context=".Activity_Contacts"
+    android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/invite_email"
-        android:layout_below="@+id/invite_email"
-        android:layout_marginLeft="28dp"
-        android:layout_marginTop="47dp"
-        android:text="Add more"
-        android:width="100dp" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button1"
-        android:layout_alignBottom="@+id/button1"
-        android:layout_alignRight="@+id/do_email_picker"
-        android:layout_marginRight="54dp"
-        android:text="Done"
-        android:width="100dp" />
-
+    
+    
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:text="Please enter a phone number of the receiver(s)" />
-
+    
+    <Button
+        android:id="@+id/do_email_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/invite_phone"
+        android:layout_alignRight="@+id/textView1"
+        android:onClick="doLaunchContactPicker"
+        android:text="Contact" />
+    
     <EditText
-        android:id="@+id/invite_email"
+        android:id="@+id/invite_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textView1"
         android:layout_marginTop="22dp"
         android:ems="10"
-        android:inputType="textEmailAddress" >
+        android:layout_toLeftOf="@+id/do_email_picker"
+        android:inputType="phone" >
 
         <requestFocus />
     </EditText>
-
-    <Button
-        android:id="@+id/do_email_picker"
-        android:layout_width="wrap_content"
+    
+    <LinearLayout
+        android:id="@+id/buttonBox"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/invite_email"
-        android:layout_alignBottom="@+id/invite_email"
-        android:layout_toRightOf="@+id/invite_email"
-        android:onClick="doLaunchContactPicker"
-        android:text="Contact" />
-
+        android:orientation="horizontal"
+        android:layout_below="@+id/invite_phone">
+	    <Button
+	        android:id="@+id/button1"
+	        android:layout_width="0px"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="5dp"
+	        android:layout_weight="1"
+	        android:onClick="addMore"
+	        android:text="Add more" />
+	
+	    <Button
+	        android:id="@+id/button2"
+	        android:layout_width="0px"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="5dp"
+	        android:layout_weight="1"
+	        android:text="Done"/>
+	</LinearLayout>
+	
+    <ListView 
+        android:id="@+id/saveContactNumbers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonBox" />
+    
 </RelativeLayout>
