@@ -3,6 +3,7 @@
 package edu.uta.team1;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -33,6 +34,12 @@ public class Activity_Contacts extends Activity {
         setContentView(R.layout.activity_contacts);
         phoneEntry = (EditText) findViewById(R.id.invite_phone);
         numberListView = (ListView) findViewById(R.id.saveContactNumbers);
+        String numbers = getIntent().getExtras().getString("contacts");
+        
+        if(numbers.length() > 0){
+        	phone_No = singleStringToList(numbers);
+        	loadList();
+        }
     }
 
 
@@ -126,20 +133,48 @@ public class Activity_Contacts extends Activity {
    	{
     	String numberEntry = phoneEntry.getText().toString(); 
     	if(numberEntry.length() != 0){
+    		String formattedEntry = removeExtraCharacters(numberEntry);
     		boolean found = false;
     		for(String number : phone_No){
-    			if(number.equals(numberEntry)){
+    			if(number.equals(formattedEntry)){
     				found = true;
     			}
     		}
     		if(!found) {
-    			phone_No.add(numberEntry);
+    			phone_No.add(formattedEntry);
     		} else {
     			Toast.makeText(getApplicationContext(), "Duplicate number", Toast.LENGTH_SHORT).show();
     		}
     	}
    	}
+    
+    private String removeExtraCharacters(String entry){
+    	StringBuilder justNumbers = new StringBuilder();
+    	
+    	for(int i = 0; i < entry.length(); i++){
+    		char c = entry.charAt(i);
+    		if(isNumeric(c)){
+    			justNumbers.append(c);
+    		}
+    	}
+    	
+    	return justNumbers.toString();
+    }
 	   
+    private boolean isNumeric(char c){
+    	return c == '0' ||
+    			c == '1' ||
+    			c == '2' ||
+    			c == '3' ||
+    			c == '4' ||
+    			c == '5' ||
+    			c == '6' ||
+    			c == '7' ||
+    			c == '8' ||
+    			c == '9';
+    			
+    }
+    
     private void loadList()
     {
     	numberListView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, phone_No));
@@ -150,11 +185,29 @@ public class Activity_Contacts extends Activity {
     	
     	if(phone_No.size() > 0){
     		Intent returnIntent = new Intent();
-    	    returnIntent.putExtra("contacts", phone_No);
+    	    returnIntent.putExtra("contacts", contactSingleString(phone_No));
     	    setResult(RESULT_OK, returnIntent);       
     	} else {
     		setResult(RESULT_CANCELED);
     	}
     	finish();
+    }
+    
+    private String contactSingleString(ArrayList<String> contactList){
+    	StringBuilder builder = new StringBuilder();
+    	
+    	for(String number : contactList){
+    		builder.append(number);
+    		builder.append(' ');
+    	}
+    	return builder.toString();
+    }
+    
+    private ArrayList<String> singleStringToList(String numbers){
+    	
+    	String[] stringArray = numbers.split(" ");
+    	ArrayList<String> numberList = new ArrayList<String>(Arrays.asList(stringArray));
+    	
+    	return numberList;
     }
 }

@@ -21,10 +21,11 @@ public class ProximityAlert implements Parcelable {
 	  public int Hour = -1;
 	  public int Min = -1;
 	  //public ArrayList<String> Contacts = new ArrayList<String>();
+	  public String Contacts = "";
 	  public boolean Enabled = false;
 	  public boolean IsNew = true;
 
-	  public ProximityAlert(long id, double lat, double lng, String name, String desc, int month, int dayOfMonth, int year, int hour, int min, boolean enabled) {
+	  public ProximityAlert(long id, double lat, double lng, String name, String desc, int month, int dayOfMonth, int year, int hour, int min, String contacts, boolean enabled) {
 	    this.Lat = lat;
 	    this.Lng = lng;
 	    this.Id = id;
@@ -35,16 +36,16 @@ public class ProximityAlert implements Parcelable {
 	    this.Year = year;
 	    this.Hour = hour;
 	    this.Min = min;
-	    //this.Contacts = contacts;
+	    this.Contacts = contacts;
 	    this.Enabled = enabled;
 	  }
 
-	  public ProximityAlert(double lat, double lng, String name, String desc, int month, int dayOfMonth, int year, int hour, int min, boolean enabled) {
-	    this(nextId++, lat, lng, name, desc, month, dayOfMonth, year, hour, min, enabled);
+	  public ProximityAlert(double lat, double lng, String name, String desc, int month, int dayOfMonth, int year, int hour, int min, String contacts, boolean enabled) {
+	    this(nextId++, lat, lng, name, desc, month, dayOfMonth, year, hour, min, contacts, enabled);
 	  }
 
 	  public ProximityAlert(long id, String name, String desc) {
-	    this(id, 0.0, 0.0, name, desc, Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), false);
+	    this(id, 0.0, 0.0, name, desc, Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), "", false);
 	  }
 
 	@Override
@@ -67,7 +68,7 @@ public class ProximityAlert implements Parcelable {
 		dest.writeInt(Year);
 		dest.writeInt(Hour);
 		dest.writeInt(Min);
-		//dest.writeStringList(Contacts);
+		dest.writeString(Contacts);
 		if(this.Enabled)
 			dest.writeInt(1);
 		else
@@ -98,7 +99,7 @@ public class ProximityAlert implements Parcelable {
 		 this.Year = in.readInt();
 		 this.Hour = in.readInt();
 		 this.Min = in.readInt();
-		 //in.readStringList(this.Contacts);
+		 this.Contacts = in.readString();
 		 int enabled = in.readInt();
 		 if(enabled ==1)
 			 this.Enabled=true;

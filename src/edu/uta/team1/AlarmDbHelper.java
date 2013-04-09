@@ -18,12 +18,13 @@ public class AlarmDbHelper extends SQLiteOpenHelper {
 	public static final String YEAR_CLM="year";
 	public static final String HOUR_CLM="hour";
 	public static final String MIN_CLM="minute";
-	//public static final String CON_CLM="contacts";
+	public static final String CON_CLM="contacts";
 	public static final String enabled_CLM="enabled";
 	
 	private static final String TABLE_QUERY ="create table "+TABLE_NAME +"("+_ID+" INTEGER PRIMARY KEY,"
 		+NAME_CLM+" text,"+DESC_CLM+" text,"+ LATT_CLM+" float,"+	LONGI_CLM+" float,"+DAY_CLM+ " integer,"+ 
-		MONTH_CLM+" integer,"+ YEAR_CLM+" integer,"+HOUR_CLM+" integer,"+MIN_CLM+" integer,"+enabled_CLM+" integer)";
+		MONTH_CLM+" integer,"+ YEAR_CLM+" integer,"+HOUR_CLM+" integer,"+MIN_CLM+" integer,"+
+		CON_CLM+" text,"+enabled_CLM+" integer)";
 
 	
 	public AlarmDbHelper(Context context) {

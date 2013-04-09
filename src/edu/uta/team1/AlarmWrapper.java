@@ -20,7 +20,7 @@ public class AlarmWrapper {
 		AlarmDbHelper.YEAR_CLM,
 		AlarmDbHelper.HOUR_CLM,
 		AlarmDbHelper.MIN_CLM,
-		//AlarmDbHelper.CON_CLM,
+		AlarmDbHelper.CON_CLM,
 		AlarmDbHelper.enabled_CLM
 		
 	};
@@ -46,7 +46,7 @@ public class AlarmWrapper {
 	    	int year_index = c.getColumnIndex(AlarmDbHelper.YEAR_CLM);
 	    	int hour_index = c.getColumnIndex(AlarmDbHelper.HOUR_CLM);
 	    	int min_index = c.getColumnIndex(AlarmDbHelper.MIN_CLM);
-	    	//int contacts_index = c.getColumnIndex(AlarmDbHelper.CON_CLM);
+	    	int contacts_index = c.getColumnIndex(AlarmDbHelper.CON_CLM);
 	    	int enabled_index = c.getColumnIndex(AlarmDbHelper.enabled_CLM);
 	    	
 	    	do{
@@ -60,12 +60,12 @@ public class AlarmWrapper {
 	    		int year = c.getInt(year_index);
 	    		int hour = c.getInt(hour_index);
 	    		int min = c.getInt(min_index);
-	    		//byte[] = c.getBlob(contacts_index);
+	    		String contacts = c.getString(contacts_index);
 	    		int enabled = c.getInt(enabled_index);
 	    		if(enabled ==1)
-	    			reminders.add(new ProximityAlert(id, latt, longi, name, desc, month, day, year, hour, min, true));
+	    			reminders.add(new ProximityAlert(id, latt, longi, name, desc, month, day, year, hour, min, contacts, true));
 	    		else
-	    			reminders.add(new ProximityAlert(id, latt, longi, name, desc, month, day, year, hour, min, false));
+	    			reminders.add(new ProximityAlert(id, latt, longi, name, desc, month, day, year, hour, min, contacts, false));
 	    	}
 	    	while (c.moveToNext());
 	    	
@@ -122,6 +122,7 @@ public class AlarmWrapper {
 			    values.put(AlarmDbHelper.MONTH_CLM, reminder.Month);
 			    values.put(AlarmDbHelper.YEAR_CLM, reminder.Year);
 			    values.put(AlarmDbHelper.HOUR_CLM, reminder.Hour);
+			    values.put(AlarmDbHelper.CON_CLM, reminder.Contacts);
 			    values.put(AlarmDbHelper.MIN_CLM, reminder.Min);
 			    if(reminder.Enabled)
 			    	values.put(AlarmDbHelper.enabled_CLM, 1);
@@ -155,6 +156,7 @@ public class AlarmWrapper {
 	    values.put(AlarmDbHelper.YEAR_CLM, reminder.Year);
 	    values.put(AlarmDbHelper.HOUR_CLM, reminder.Hour);
 	    values.put(AlarmDbHelper.MIN_CLM, reminder.Min);
+	    values.put(AlarmDbHelper.CON_CLM, reminder.Contacts);
 	    if(reminder.Enabled)
 	    	values.put(AlarmDbHelper.enabled_CLM, 1);
 	    else
