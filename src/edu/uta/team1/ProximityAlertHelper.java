@@ -1,7 +1,9 @@
 package edu.uta.team1;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import android.app.Activity;
@@ -180,9 +182,8 @@ public class ProximityAlertHelper {
 
 	  private long getExpiry(ProximityAlert reminder) {
 		long exp=0;  
-		Date d = new Date(reminder.Year, reminder.Month, reminder.DayOfMonth);
-		exp = d.getTime()- System.currentTimeMillis();
-		
+		Calendar c = new GregorianCalendar(reminder.Year, reminder.Month, reminder.DayOfMonth, reminder.Hour, reminder.Min);
+		exp = c.getTimeInMillis();
 		return exp;
 	}
 
