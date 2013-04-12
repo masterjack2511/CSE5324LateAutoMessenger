@@ -1,8 +1,6 @@
 package edu.uta.team1;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
